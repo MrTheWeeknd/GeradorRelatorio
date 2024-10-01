@@ -48,6 +48,7 @@
       /* Personalização com as cores da empresa */
       body {
         background-color: #ffffff; /* Branco */
+        font-family: "Roboto";
       }
 
       .container {
@@ -93,14 +94,17 @@
       }
 
       .photos img {
-        width: 150px;
-        height: 150px;
-        margin-right: 10px;
+        width: 45%;
+        height: 45%;
+        margin-right: 10x;
+        margin-bottom: 10px;
         border: 1px solid #ddd;
+        object-fit: cover; /* Mantém a proporção da imagem */
+        page-break-inside: avoid;
       }
 
       .button {
-        display: block;
+        display: inline-block; /* Alterado de block para inline-block */
         text-align: center;
         padding: 10px;
         background-color: #4caf50;
@@ -108,6 +112,8 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        margin: 20px auto; /* Centraliza o botão */
+        display: block; /* Garante que ele fique centralizado no bloco */
       }
 
       .button:hover {
@@ -116,7 +122,7 @@
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="relatorio">
       <h1>Relatório de Serviço</h1>
       <img src="Marca Principal 1.png" alt="Logo da Empresa" class="logo" />
 
@@ -185,76 +191,19 @@
           placeholder="Adicione observações sobre o serviço..."
         ></textarea>
       </div>
-
-      <!-- Botão de Gerar PDF -->
-      <button class="button" id="gerar-pdf">Baixar Relatório em PDF</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Botão de Gerar PDF -->
+    <button class="button" id="gerar-pdf">Baixar Relatório em PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <script>
-      // Função para gerar e baixar o PDF
+      // Função para gerar o PDF exatamente como o layout da página
       document
         .getElementById("gerar-pdf")
         .addEventListener("click", function () {
-          var { jsPDF } = window.jspdf;
-          var doc = new jsPDF();
-
-          // Adicionar logo
-          // Se você quiser adicionar a logo ao PDF, é necessário usar base64 da imagem ou uma URL da logo
-          // doc.addImage(logoBase64, 'PNG', 15, 10, 50, 20);
-
-          // Informações da empresa
-          doc.setFontSize(16);
-          doc.text("Relatório de Serviço", 105, 20, null, null, "center");
-          doc.setFontSize(12);
-          doc.text("Nome da Empresa: Nome da sua empresa", 20, 40);
-          doc.text("Telefone: (XX) XXXX-XXXX", 20, 50);
-          doc.text("CNPJ: 00.000.000/0000-00", 20, 60);
-
-          // Informações do cliente
-          doc.setFontSize(14);
-          doc.text("Informações do Cliente", 20, 80);
-          doc.setFontSize(12);
-          doc.text(
-            "Nome do Cliente: " + document.getElementById("cliente-nome").value,
-            20,
-            90
-          );
-          doc.text(
-            "Telefone do Cliente: " +
-              document.getElementById("cliente-telefone").value,
-            20,
-            100
-          );
-          doc.text(
-            "Endereço do Cliente: " +
-              document.getElementById("cliente-endereco").value,
-            20,
-            110
-          );
-
-          // Tipo de serviço
-          doc.setFontSize(14);
-          doc.text("Tipo de Serviço", 20, 130);
-          doc.setFontSize(12);
-          doc.text(
-            "Serviço Prestado: " + document.getElementById("servico").value,
-            20,
-            140
-          );
-
-          // Observações
-          doc.setFontSize(14);
-          doc.text("Observações", 20, 160);
-          doc.setFontSize(12);
-          doc.text(
-            "Detalhes: " + document.getElementById("observacoes").value,
-            20,
-            170
-          );
-
-          // Gerar e baixar PDF
-          doc.save("relatorio-servico.pdf");
+          var element = document.getElementById("relatorio");
+          html2pdf().from(element).save("relatorio-servico.pdf");
         });
 
       // Adicionando as fotos (pré-visualização e upload ilimitado)
