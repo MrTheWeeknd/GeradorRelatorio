@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="Automação, Residencial, Instalação, Soluções, Inteligente, Câmera, Segurança, Alarme, Sensor"
+    />
+    <title>Amazon ON</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="Identidade Visual Amazon On/Marca/PNG/Ícone Principal 2.png"
+      sizes="32x32"
+      type="image/x-icon"
+    />
+
+    <!--Símbolo redes sociais-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <!--Fontes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!--Ícones Bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      /* Personalização com as cores da empresa */
+      body {
+        background-color: #ffffff; /* Branco */
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .logo {
+        display: block;
+        margin: 0 auto 20px;
+        width: 150px;
+        height: auto;
+      }
+
+      .section {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      .photos img {
+        width: 150px;
+        height: 150px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+      }
+
+      .button {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Relatório de Serviço</h1>
+      <img
+        src="Identidade Visual Amazon On/Marca/PNG/Marca Principal 1.png"
+        alt="Logo da Empresa"
+        class="logo"
+      />
+
+      <!-- Informações da Empresa -->
+      <div class="section">
+        <h2>Informações da Empresa</h2>
+        <p>
+          <strong>Nome da Empresa:</strong> Amazon On: Soluções Inteligentes
+        </p>
+        <p><strong>Telefone:</strong> +55 (92) 99500-8182</p>
+        <p><strong>CNPJ:</strong> 03.203.054/0001-42</p>
+      </div>
+
+      <!-- Informações do Cliente -->
+      <div class="section">
+        <h2>Informações do Cliente</h2>
+        <label for="cliente-nome">Nome do Cliente:</label>
+        <input
+          type="text"
+          id="cliente-nome"
+          placeholder="Digite o nome do cliente"
+        />
+
+        <label for="cliente-telefone">Telefone do Cliente:</label>
+        <input
+          type="text"
+          id="cliente-telefone"
+          placeholder="Digite o telefone do cliente"
+        />
+
+        <label for="cliente-endereco">Endereço do Cliente:</label>
+        <input
+          type="text"
+          id="cliente-endereco"
+          placeholder="Digite o endereço do cliente"
+        />
+      </div>
+
+      <!-- Tipo de Serviço -->
+      <div class="section">
+        <h2>Tipo de Serviço</h2>
+        <label for="servico">Serviço Prestado:</label>
+        <input
+          type="text"
+          id="servico"
+          placeholder="Descreva o serviço prestado"
+        />
+      </div>
+
+      <!-- Fotos do Serviço -->
+      <div class="section">
+        <h2>Fotos do Serviço</h2>
+        <div class="photos" id="photos-container">
+          <label for="fotos">Anexar Fotos:</label>
+          <input type="file" id="fotos" multiple />
+        </div>
+      </div>
+
+      <!-- Observações -->
+      <div class="section">
+        <h2>Observações</h2>
+        <label for="observacoes">Detalhes do Serviço Prestado:</label>
+        <textarea
+          id="observacoes"
+          rows="5"
+          placeholder="Adicione observações sobre o serviço..."
+        ></textarea>
+      </div>
+
+      <!-- Botão de Gerar PDF -->
+      <button class="button" id="gerar-pdf">Baixar Relatório em PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      // Função para gerar e baixar o PDF
+      document
+        .getElementById("gerar-pdf")
+        .addEventListener("click", function () {
+          var { jsPDF } = window.jspdf;
+          var doc = new jsPDF();
+
+          // Adicionar logo
+          // Se você quiser adicionar a logo ao PDF, é necessário usar base64 da imagem ou uma URL da logo
+          // doc.addImage(logoBase64, 'PNG', 15, 10, 50, 20);
+
+          // Informações da empresa
+          doc.setFontSize(16);
+          doc.text("Relatório de Serviço", 105, 20, null, null, "center");
+          doc.setFontSize(12);
+          doc.text("Nome da Empresa: Nome da sua empresa", 20, 40);
+          doc.text("Telefone: (XX) XXXX-XXXX", 20, 50);
+          doc.text("CNPJ: 00.000.000/0000-00", 20, 60);
+
+          // Informações do cliente
+          doc.setFontSize(14);
+          doc.text("Informações do Cliente", 20, 80);
+          doc.setFontSize(12);
+          doc.text(
+            "Nome do Cliente: " + document.getElementById("cliente-nome").value,
+            20,
+            90
+          );
+          doc.text(
+            "Telefone do Cliente: " +
+              document.getElementById("cliente-telefone").value,
+            20,
+            100
+          );
+          doc.text(
+            "Endereço do Cliente: " +
+              document.getElementById("cliente-endereco").value,
+            20,
+            110
+          );
+
+          // Tipo de serviço
+          doc.setFontSize(14);
+          doc.text("Tipo de Serviço", 20, 130);
+          doc.setFontSize(12);
+          doc.text(
+            "Serviço Prestado: " + document.getElementById("servico").value,
+            20,
+            140
+          );
+
+          // Observações
+          doc.setFontSize(14);
+          doc.text("Observações", 20, 160);
+          doc.setFontSize(12);
+          doc.text(
+            "Detalhes: " + document.getElementById("observacoes").value,
+            20,
+            170
+          );
+
+          // Gerar e baixar PDF
+          doc.save("relatorio-servico.pdf");
+        });
+
+      // Adicionando as fotos (pré-visualização e upload ilimitado)
+      document
+        .getElementById("fotos")
+        .addEventListener("change", function (event) {
+          var files = event.target.files;
+          var container = document.getElementById("photos-container");
+
+          for (var i = 0; i < files.length; i++) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var img = document.createElement("img");
+              img.src = e.target.result;
+              img.width = 150;
+              img.height = 150;
+              container.appendChild(img);
+            };
+            reader.readAsDataURL(files[i]);
+          }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
